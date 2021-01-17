@@ -1,0 +1,554 @@
+
+@extends('layouts.app')
+
+@section('content')
+    
+
+  <body class="app sidebar-mini">
+    <!-- Navbar-->
+    <header class="app-header"><a class="app-header__logo" href="index.html">Medidesk</a>
+      <!-- Sidebar toggle button--><a class="app-sidebar__toggle" href="#" data-toggle="sidebar" aria-label="Hide Sidebar"></a>
+      <!-- Navbar Right Menu-->
+      <ul class="app-nav">
+        <li class="app-search">
+          <input class="app-search__input" type="search" placeholder="Search">
+          <button class="app-search__button"><i class="fa fa-search"></i></button>
+        </li>
+        <!--Notification Menu-->
+        <li class="dropdown"><a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Show notifications"><i class="fa fa-bell-o fa-lg"></i></a>
+          <ul class="app-notification dropdown-menu dropdown-menu-right">
+            <li class="app-notification__title">You have 4 new notifications.</li>
+            <div class="app-notification__content">
+              <li><a class="app-notification__item" href="javascript:;"><span class="app-notification__icon"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x text-primary"></i><i class="fa fa-envelope fa-stack-1x fa-inverse"></i></span></span>
+                  <div>
+                    <p class="app-notification__message">Lisa sent you a mail</p>
+                    <p class="app-notification__meta">2 min ago</p>
+                  </div></a></li>
+              <li><a class="app-notification__item" href="javascript:;"><span class="app-notification__icon"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x text-danger"></i><i class="fa fa-hdd-o fa-stack-1x fa-inverse"></i></span></span>
+                  <div>
+                    <p class="app-notification__message">Mail server not working</p>
+                    <p class="app-notification__meta">5 min ago</p>
+                  </div></a></li>
+              <li><a class="app-notification__item" href="javascript:;"><span class="app-notification__icon"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x text-success"></i><i class="fa fa-money fa-stack-1x fa-inverse"></i></span></span>
+                  <div>
+                    <p class="app-notification__message">Transaction complete</p>
+                    <p class="app-notification__meta">2 days ago</p>
+                  </div></a></li>
+              <div class="app-notification__content">
+                <li><a class="app-notification__item" href="javascript:;"><span class="app-notification__icon"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x text-primary"></i><i class="fa fa-envelope fa-stack-1x fa-inverse"></i></span></span>
+                    <div>
+                      <p class="app-notification__message">Lisa sent you a mail</p>
+                      <p class="app-notification__meta">2 min ago</p>
+                    </div></a></li>
+                <li><a class="app-notification__item" href="javascript:;"><span class="app-notification__icon"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x text-danger"></i><i class="fa fa-hdd-o fa-stack-1x fa-inverse"></i></span></span>
+                    <div>
+                      <p class="app-notification__message">Mail server not working</p>
+                      <p class="app-notification__meta">5 min ago</p>
+                    </div></a></li>
+                <li><a class="app-notification__item" href="javascript:;"><span class="app-notification__icon"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x text-success"></i><i class="fa fa-money fa-stack-1x fa-inverse"></i></span></span>
+                    <div>
+                      <p class="app-notification__message">Transaction complete</p>
+                      <p class="app-notification__meta">2 days ago</p>
+                    </div></a></li>
+              </div>
+            </div>
+            <li class="app-notification__footer"><a href="#">See all notifications.</a></li>
+          </ul>
+        </li>
+        <!-- User Menu-->
+        <li class="dropdown"><a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Open Profile Menu"><i class="fa fa-user fa-lg"></i></a>
+          <ul class="dropdown-menu settings-menu dropdown-menu-right">
+            <li><a class="dropdown-item" href="page-user.html"><i class="fa fa-cog fa-lg"></i> Settings</a></li>
+            <li><a class="dropdown-item" href="page-user.html"><i class="fa fa-user fa-lg"></i> Profile</a></li>
+            <li><a class="dropdown-item" href="{{ route('logout') }}" 
+                
+                onclick="event.preventDefault();
+                document.getElementById('logout-form').submit();"><i class="fa fa-sign-out fa-lg"></i>
+   {{ __('Logout') }}
+                                   
+        </a> </li>
+  
+        </ul>
+        </li>
+      </ul>
+      <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+        @csrf
+    </form>
+    </header>
+    <!-- Sidebar menu-->
+    <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
+    <aside class="app-sidebar">
+      <div class="app-sidebar__user">
+        <div>
+          <p class="app-sidebar__user-name">{{Auth::user()->email}}</p>
+          <p class="app-sidebar__user-designation">{{Auth::user()->tipo}}</p>
+        </div>
+      </div>
+      <ul class="app-menu">
+        <li><a class="app-menu__item" href="dashboard.html"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Dashboard</span></a></li>
+      <li class="treeview is-expanded"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-user"></i><span class="app-menu__label">Usuarios</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+          <ul class="treeview-menu">
+            <li><a class="treeview-item active" href="/registrarUsuario"><i class="icon fa fa-circle-o"></i> Crear Usuario</a></li>
+           
+            <li><a class="treeview-item" href="/medicos"><i class="icon fa fa-circle-o"></i> Médicos</a></li>
+            <li><a class="treeview-item" href="/enfermeros"><i class="icon fa fa-circle-o"></i> Enfermeros</a></li>
+            <li><a class="treeview-item" href="/administradores"><i class="icon fa fa-circle-o"></i> Administradores</a></li>
+            <li><a class="treeview-item" href="/empresas"><i class="icon fa fa-circle-o"></i> Empresas</a></li>
+          </ul>
+        </li>
+      
+    </ul>
+    </aside>
+    <main class="app-content">
+      <div class="app-title">
+        <div>
+          <h1><i class="fa fa-th-list"></i> Data Table</h1>
+          <p>Table to display analytical data effectively</p>
+        </div>
+        <ul class="app-breadcrumb breadcrumb side">
+          <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+          <li class="breadcrumb-item">Tables</li>
+          <li class="breadcrumb-item active"><a href="#">Data Table</a></li>
+        </ul>
+      </div>
+     
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header text-center">Crear Usuario</div>
+
+                <div class="card-body">
+                    <form method="POST" action="/registrarUsuario">
+                        @csrf
+
+                        
+                        <div id= '1' style="display: none;">
+                        <div class="form-group row">
+                            <label for="name" class="col-md-4 col-form-label text-md-right">Nombre de la Empresa:</label>
+
+                            <div class="col-md-6">
+                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name"value="{{ old('name') }}"  >
+
+                                @error('name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                    </div>
+
+   <div id= '2' style="display: none;">
+                        <div class="form-group row">
+                            <label for="nombres" class="col-md-4 col-form-label text-md-right">Nombres:</label>
+
+                            <div class="col-md-6">
+                                <input id="nombres" type="text" class="form-control @error('nombres') is-invalid @enderror" name="nombres" value="{{ old('nombres') }}">
+
+                                @error('nombre')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id= '3' style="display: none;">
+                        <div class="form-group row">
+                            <label for="apellidos" class="col-md-4 col-form-label text-md-right">Apellidos:</label>
+
+                            <div class="col-md-6">
+                                <input id="apellidos" type="text" class="form-control @error('apellidos') is-invalid @enderror" name="apellidos" value="{{ old('apellidos') }}"  >
+
+                                @error('apellidos')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        </div>
+
+                        <div id= '16' style="display: none;">
+                            <div class="form-group row">
+                                <label for="fec_nac" class="col-md-4 col-form-label text-md-right">Fecha de Nacimiento:</label>
+    
+                                <div class="col-md-6">
+                                    <input id="fec_nac" type="date" class="form-control @error('fec_nac') is-invalid @enderror" name="fec_nac" value="{{ old('fec_nac') }}"  >
+    
+                                    @error('fec_nac')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+                            </div>
+
+
+                            <div id= '26' style="display: none;">
+                                <div class="form-group row">
+                                    <label for="edad" class="col-md-4 col-form-label text-md-right">Edad:</label>
+        
+                                    <div class="col-md-6">
+                                        <input id="edad" type="number" class="form-control @error('edad') is-invalid @enderror" name="edad" value="{{ old('edad') }}"  >
+        
+                                        @error('edad')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                </div>
+
+
+                                <div id= '46' style="display: none;">
+                                    <div class="form-group row">
+                                      <legend class="col-md-4 col-form-label text-md-right">Género:</legend>
+                                      <div class="col-md-6">
+                                        <div class="form-check">
+                                          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="Femenino" @if(old('gridRadios')) checked @endif>
+                                          <label class="form-check-label" for="gridRadios1">
+                                           Femenino
+                                          </label>
+                                        </div>
+                                        <div class="form-check">
+                                          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="Masculino" @if(!old('gridRadios')) checked @endif>
+                                          <label class="form-check-label" for="gridRadios2">
+                                            Masculino
+                                          </label>
+                                        </div>
+                                       
+                                      </div>
+                                    </div>
+                                    </div>
+                             
+                                    <div id= '100' style="display: none;">
+                                        <div class="form-group row">
+                                            <label for="telefono" class="col-md-4 col-form-label text-md-right">Teléfono:</label>
+                
+                                            <div class="col-md-6">
+                                                <input id="telefono" type="text" class="form-control @error('telefono') is-invalid @enderror" name="telefono" value="{{ old('telefono') }}">
+                
+                                                @error('telefono')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                    <div id= '10' style="display: none;">
+                        <div class="form-group row">
+                            <label for="direccion" class="col-md-4 col-form-label text-md-right">Dirección:</label>
+
+                            <div class="col-md-6">
+                                <input id="direccion" type="text" class="form-control @error('direccion') is-invalid @enderror" name="direccion" value="{{ old('direccion') }}">
+
+                                @error('direccion')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id= '11' style="display: none;">
+                        <div class="form-group row">
+                            <label for="ruc" class="col-md-4 col-form-label text-md-right">RUC:</label>
+
+                            <div class="col-md-6">
+                                <input id="ruc" type="text" class="form-control @error('ruc') is-invalid @enderror" name="ruc" value="{{ old('ruc') }}">
+
+                                @error('ruc')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                    </div>
+
+
+                 
+
+                        <div id= '4' style="display: none;">
+                        <div class="form-group row">
+                            <label for="Dni" class="col-md-4 col-form-label text-md-right">Dni:</label>
+
+                            <div class="col-md-6">
+                                <input id="Dni" type="text" class="form-control @error('Dni') is-invalid @enderror" name="Dni" value="{{ old('Dni') }}" >
+
+                                @error('Dni')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        </div>
+
+                       
+                        <div class="form-group row">
+                            
+                                <label for="Tipo" class="col-md-4 col-form-label text-md-right">Tipo de Usuario:</label>
+                                <div class="col-md-6">
+                                <select class="form-control" id="Tipo" name="Tipo" onChange="mostrar(this.value);">
+                                  <option></option>
+                                    <option value="medico" >Médico</option>
+                                  <option value="admision">Administrador</option>
+                                  <option value="enfermera">Enfermera</option>
+                                  <option value="empresa">Empresa</option>
+                         
+                                </select>
+                          
+
+
+                                @error('Tipo')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        
+
+                        <div id='6' style="display: none;">
+                            <div class="form-group row">
+                            
+                                <label for="Especialidad" class="col-md-4 col-form-label text-md-right">Especialidad:</label>
+                                <div class="col-md-6">
+                                <select class="form-control" id="Especialidad" name="Especialidad" onChange="mostrar(this.value);">
+                                  <option></option>
+                                    <option value="audiometria" @if (old('Especialidad') == "audiometria") {{ 'selected' }} @endif>Audiometría</option>
+                                  <option value="laboratorio" @if (old('Especialidad') == "laboratorio") {{ 'selected' }} @endif>Laboratorio</option>
+                                  <option value="oftalmologia" @if (old('Especialidad') == "oftalmologia") {{ 'selected' }} @endif>Oftalmología</option>
+                                  <option value="psicologia" @if (old('Especialidad') == "psicologia") {{ 'selected' }} @endif>Psicología</option>
+                                  <option value="radiologia" @if (old('Especialidad') == "radiologia") {{ 'selected' }} @endif>Radiología</option>
+                                  <option value="espirometria" @if (old('Especialidad') == "espirometria") {{ 'selected' }} @endif>Espirometría</option>
+                                  <option value="odontologia" @if (old('Especialidad') == "odontologia") {{ 'selected' }} @endif>Odontología</option>
+                         
+                                </select>
+                          
+
+
+                                @error('Especialidad')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        </div>
+                       
+
+                        <div id= '7' style="display: none;">
+                        <div class="form-group row">
+                            <label for="ColegioMedico" class="col-md-4 col-form-label text-md-right">CMP:</label>
+
+                            <div class="col-md-6">
+                                <input id="ColegioMedico" type="text" class="form-control @error('ColegioMedico') is-invalid @enderror" name="ColegioMedico" value="{{ old('ColegioMedico') }}" autocomplete="ColegioMedico">
+
+                                @error('ColegioMedico')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id= '77' style="display: none;">
+                        <div class="form-group row">
+                            <label for="ColegioEnfermero" class="col-md-4 col-form-label text-md-right">CEP:</label>
+
+                            <div class="col-md-6">
+                                <input id="ColegioEnfermero" type="text" class="form-control @error('ColegioEnfermero') is-invalid @enderror" name="ColegioEnfermero" value="{{ old('ColegioEnfermero') }}" autocomplete="ColegioEnfermero">
+
+                                @error('ColegioEnfermero')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                    </div>
+                 
+                        <div class="form-group row">
+                            <label for="email" class="col-md-4 col-form-label text-md-right">Correo Electronico</label>
+
+                            <div class="col-md-6">
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+
+                                @error('email')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                       
+
+                 
+                        <div class="form-group row">
+                            <label for="password" class="col-md-4 col-form-label text-md-right">Contraseña</label>
+
+                            <div class="col-md-6">
+                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+
+                                @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                      
+
+                      
+                        <div class="form-group row">
+                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">Confirmar Contraseña</label>
+
+                            <div class="col-md-6">
+                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                            </div>
+                        </div>
+
+                        <div class="form-group row mb-0">
+                            <div class="col-md-6 offset-md-4">
+                                <button class="btn btn-primary" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i>Registrar</button>
+
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+    </main>
+
+
+
+
+   <!-- Page specific javascripts-->
+    <!-- Data table plugin-->
+    <script type="text/javascript" src="js/plugins/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="js/plugins/dataTables.bootstrap.min.js"></script>
+    <script type="text/javascript">$('#sampleTable').DataTable();</script>
+    <!-- Google analytics script-->
+    <script type="text/javascript">
+      if(document.location.hostname == 'pratikborsadiya.in') {
+      	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      	ga('create', 'UA-72504830-1', 'auto');
+      	ga('send', 'pageview');
+      }
+
+
+ function mostrar(id) {
+        if (id == "medico") {
+            $("#2").show();
+            $("#3").show();
+            $("#16").show();
+            $("#26").show();
+            $("#46").show();
+            $("#100").show();
+            $("#10").show();
+            $("#4").show();
+            $("#6").show();
+            $("#7").show();
+            $("#1").hide();
+            $("#11").hide();      
+            $("#77").hide();
+
+        }
+        if (id == "") {
+            $("#2").hide();
+            $("#3").hide();
+            $("#16").hide();
+            $("#26").hide();
+            $("#46").hide();
+            $("#100").hide();
+            $("#10").hide();
+            $("#4").hide();
+            $("#6").hide();
+            $("#7").hide();
+            $("#1").hide();  
+            $("#11").hide();
+         
+           
+            $("#77").hide();
+        }
+        if (id == "admision") {
+            $("#2").show();
+            $("#3").show();
+            $("#16").show();
+            $("#26").show();
+            $("#46").show();
+            $("#100").show();
+            $("#10").show();
+            $("#4").show();
+            $("#6").hide();
+            $("#7").hide();
+            $("#1").hide();
+            $("#11").hide();          
+            $("#77").hide();
+        }
+
+        if (id == "enfermera") {
+            $("#2").show();
+            $("#3").show();
+            $("#16").show();
+            $("#26").show();
+            $("#46").show();
+            $("#100").show();
+            $("#10").show();
+            $("#4").show();
+            $("#6").hide();
+            $("#77").show();
+            $("#1").hide();
+            $("#11").hide();
+            $("#7").hide();
+          
+        }
+        if (id == "empresa") {
+            $("#2").hide();
+            $("#3").hide();
+            $("#16").hide();
+            $("#26").hide();
+            $("#46").hide();
+            $("#100").hide();
+            $("#4").hide();
+            $("#6").hide();
+            $("#7").hide();
+            $("#1").show();
+            $("#10").show();
+            $("#11").show();
+            $("#77").hide();
+        }
+
+    }
+
+
+
+    </script>
+  </body>
+
+@endsection
+
+
+
+
