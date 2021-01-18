@@ -1,6 +1,8 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use app\Http\Controllers;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,10 +21,26 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/registrarUsuario','Auth\RegisterController@getRegistrar');
+Route::post('/registrarUsuario','Auth\RegisterController@postRegistrar');
 
-Auth::routes();
+Route::get('/medicos','UsuarioController@showMedicos');
+Route::get('/enfermeros','UsuarioController@showEnfermeros');
+Route::get('/administradores','UsuarioController@showAdministradores');
+Route::get('/empresas','UsuarioController@showEmpresas');
 
+Route::get('/administrador/inicio','UsuarioController@showAdmInicio');
+
+Route::get('/medicos/actualizar','UsuarioController@actualizarUsuario');
+Route::post('/medicos/actualizar','UsuarioController@postactualizarUsuario');
+
+Route::get('/enfermeros/actualizar','UsuarioController@actualizarUsuario');
+Route::post('/enfermeros/actualizar','UsuarioController@postactualizarUsuario');
+
+Route::get('/administradores/actualizar','UsuarioController@actualizarUsuario');
+Route::post('/administradores/actualizar','UsuarioController@postactualizarUsuario');
+
+<<<<<<< HEAD
 Route::get('/home', 'HomeController@index')->name('home');
 
 /*Rutas Triaje*/
@@ -37,3 +55,7 @@ Route::get('/triaje/getIdCita/{id_cita}','Dashboard\TriajeController@getIdCita')
 
 /*End Rutas Triaje*/
 
+=======
+Route::get('/empresas/actualizar','UsuarioController@actualizarUsuario');
+Route::post('/empresas/actualizar','UsuarioController@postactualizarUsuario');
+>>>>>>> f95e3d500f45fa66108f932da3e695b903d19251
