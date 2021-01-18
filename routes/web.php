@@ -24,3 +24,16 @@ Route::get('/home', 'HomeController@index')->name('home');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+/*Rutas Triaje*/
+
+Route::resource('dashboard/triaje','Dashboard\TriajeController');
+
+Route::get('listarCita', 'Dashboard\TriajeController@listarCita');
+
+Route::get('/triaje/eliminar','Dashboard\TriajeController@destroy');
+
+Route::get('/triaje/getIdCita/{id_cita}','Dashboard\TriajeController@getIdCita');
+
+/*End Rutas Triaje*/
+
