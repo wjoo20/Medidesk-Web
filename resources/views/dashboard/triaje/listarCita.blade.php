@@ -1,6 +1,7 @@
 @extends('dashboard.master')
 
 @section('content')
+    
         <main class="app-content">
             <div class="app-title">
                 <div>

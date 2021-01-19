@@ -2,7 +2,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="dni_enfermera" class="control-label">Dni Enfermera</label>
-                                    <input id="dni_enfermera" name="dni_enfermera" class="form-control" type="text" value="{{ old('dni_enfermera', $triaje->dni_enfermera) }}">
+                                    <input id="dni_enfermera" name="dni_enfermera" class="form-control" type="text" value="{{ old('dni_enfermera', $triaje->dni_enfermera=Auth::user()->id) }}">
                                 </div>
                                 <div class="form-group">
                                     <label for="peso" class="control-label">Peso</label>
@@ -13,7 +13,7 @@
                                     <input id="talla" name="talla" class="form-control" type="text" value="{{ old('talla',$triaje->talla) }}">
                                 </div>
                                 <div class="form-group">
-                                    <label for="cintura"  class="control-label">Cintura</label>
+                                    <label for="cintura"  class="control-label">Perímetro Abdominal</label>
                                     <input id="cintura" name="cintura" class="form-control" type="text" value="{{ old('cintura', $triaje->cintura) }}">
                                 </div>
                                 <div class="form-group">
