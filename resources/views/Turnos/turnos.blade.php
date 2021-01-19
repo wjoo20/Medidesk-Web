@@ -82,45 +82,45 @@
             <table class="table table-dark text-center">
                 <thead>
                   <tr>
-                    <th scope="col">TURNO</th>
-                    <th scope="col">CONSULTORIO</th>
+                    <th scope="col">DNI</th>
+                    <th scope="col">ESPECIALIDAD</th>
                  
                   </tr>
                 </thead>
                 <tbody>
                   <tr class="bg-success">
-                    <th scope="row">1</th>
-                    <td>C24-A</td>
+                    <th scope="row">{{$t1}}</th>
+                    <td>Audiometria</td>
                   
                   </tr>
                   <tr class="bg-success"> 
-                    <th scope="row">2</th>
-                    <td>C24-B</td>
+                    <th scope="row">{{$t2}}</th>
+                    <td>Laboratorio</td>
                  
                   </tr>
                   <tr class="bg-success">
-                    <th scope="row">3</th>
-                    <td>C24-C</td>
+                    <th scope="row">{{$t3}}</th>
+                    <td>Oftalmología</td>
                   
                   </tr>
                   <tr class="bg-success">
-                    <th scope="row">4</th>
-                    <td>C24-D</td>
+                    <th scope="row">{{$t4}}</th>
+                    <td>Psicología</td>
                  
                   </tr>
                   <tr class="bg-success">
-                    <th scope="row">5</th>
-                    <td>C24-E</td>
+                    <th scope="row">{{$t5}}</th>
+                    <td>Radiología</td>
                  
                   </tr>
                   <tr class="bg-success">
-                    <th scope="row">6</th>
-                    <td>C24-F</td>
+                    <th scope="row">{{$t6}}</th>
+                    <td>Espirometría</td>
                 
                   </tr>
                   <tr class="bg-success">
-                    <th scope="row">7</th>
-                    <td>C24-G</td>
+                    <th scope="row">{{$t7}}</th>
+                    <td>Odontología</td>
               
                   </tr>
              
@@ -209,7 +209,7 @@
        padding: 0;
    }
    table{
-       font-size: 30px;
+       font-size: 28px;
    }
    .fecha {
 
