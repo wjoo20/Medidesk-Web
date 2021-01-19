@@ -2,11 +2,10 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-<<<<<<< HEAD
+
 use App\Http\Controllers\CitaEMController;
-=======
+
 use app\Http\Controllers;
->>>>>>> 441bb95a544a13021615b76debfeeb2f93dc0204
 
 /*
 |--------------------------------------------------------------------------
@@ -53,7 +52,7 @@ Route::get('/administradores/eliminar','UsuarioController@eliminarUsuario');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-<<<<<<< HEAD
+
 Route::get('em/citas/{id}', 'EM\CitaEMController@index');
 
 //Route::get('em/atenciones/{id}', 'EM\AtencionesEMController@index');
@@ -69,7 +68,7 @@ Route::post('em/citas/{idEsp}/filtrarDni', 'EM\CitaEMController@filtrarDni');
 Route::get('em/diagnostico/{dni}/{fecha}/{nombre}/{apellido}', 'EM\DiagnosticoEMController@mostrarCita');
 
 Route::get('em/citas/{id}/registrar', 'EM\CitaEMController@registrar');
-=======
+
 /*Rutas Triaje*/
 
 Route::resource('dashboard/triaje','Dashboard\TriajeController');
@@ -94,4 +93,3 @@ Route::get('/empresas/eliminar','UsuarioController@eliminarUsuario');
 
 Route::get('/turnos','UsuarioController@verTurnos');
 
->>>>>>> 441bb95a544a13021615b76debfeeb2f93dc0204

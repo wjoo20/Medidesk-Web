@@ -163,46 +163,31 @@ class RegisterController extends Controller
 
         return view('auth.registrarUsuario');
 
-
     }
 
-
-        public function postRegistrar(RequestRegistrarUsuario $request)
+    public function postRegistrar(RequestRegistrarUsuario $request)
         {
-            $data = $request->all();
-            
-            
+            $data = $request->all();  
             $this->create($data);
 
             if($data['Tipo']=="enfermera"){
 
-            return redirect('/enfermeros');
-
-
-
+                return redirect('/enfermeros');
             }
             if($data['Tipo']=="admision"){
 
                 return redirect('/administradores');
-
-
     
-    
-                } if($data['Tipo']=="medico"){
+            } if($data['Tipo']=="medico"){
 
-                    return redirect('/medicos');
+                return redirect('/medicos');
 
+            } if($data['Tipo']=="empresa"){
 
-        
-                    } if($data['Tipo']=="empresa"){
-
-                        return redirect('/empresas');
-
-
+                return redirect('/empresas');
             
-                        }
+            }
                  
         }
-
 
 }

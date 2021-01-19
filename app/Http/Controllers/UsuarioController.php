@@ -73,12 +73,10 @@ public function showEnfermeros(){
                   return redirect('dashboard/triaje');   
               
                  
-                }else{
-
-                  return "gg";
+                }elseif($tipo=="medico"){
+                    return redirect('em/citas/{id}');
                 }
-                
-
+              
         
                 }
                 public function actualizarUsuario(Request $request){
@@ -123,7 +121,7 @@ public function showEnfermeros(){
       
         $id = $request->get('dni1');
         $user1 = User::where('id',$id)->get();
-        $album2 = User::where('id',$id)->first();
+        $id_act = User::where('id',$id)->first();
 
         $tipo=$user1[0]['tipo'];
 
@@ -143,8 +141,8 @@ public function showEnfermeros(){
 
 
             if ($request->has('password')){
-                $album2->password= bcrypt($request->get('password'));
-                $album2->save();
+                $id_act->password= bcrypt($request->get('password'));
+                $id_act->save();
            }
            return redirect('/medicos');
            
@@ -165,8 +163,8 @@ public function showEnfermeros(){
                 $usuario->save();
               
                 if ($request->has('password')){
-                  $album2->password= bcrypt($request->get('password'));
-                  $album2->save();}
+                  $id_act->password= bcrypt($request->get('password'));
+                  $id_act->save();}
              
              return redirect('/administradores');
       
@@ -187,8 +185,8 @@ public function showEnfermeros(){
           $usuario->save();
         
           if ($request->has('password')){
-            $album2->password= bcrypt($request->get('password'));
-            $album2->save();}
+            $id_act->password= bcrypt($request->get('password'));
+            $id_act->save();}
        
        return redirect('/enfermeros');
   } 
@@ -201,8 +199,8 @@ public function showEnfermeros(){
     $usuario->save();
   
     if ($request->has('password')){
-      $album2->password= bcrypt($request->get('password'));
-      $album2->save();}
+      $id_act->password= bcrypt($request->get('password'));
+      $id_act->save();}
  
  return redirect('/empresas');
 }}
@@ -211,49 +209,41 @@ public function eliminarUsuario(Request $request){
 
   $id = $request->get('id');
 
+  $id_tipo = User::where('id',$id)->get();
+  $del_user = User::where('id',$id);
 
-  $album1 = User::where('id',$id)->get();
-  $album2 = User::where('id',$id);
-
-
-  $tipo=$album1[0]['tipo'];
+  $tipo=$id_tipo[0]['tipo'];
 
   if ($tipo=="medico") {
 
+    $del_tipo = Medico::where('dni',$id);
 
-  $album = Medico::where('dni',$id);
-
-
-  $album->delete();
-  $album2->delete();
-  return redirect('/medicos');
+    $del_tipo->delete();
+    $del_user->delete();
+    return redirect('/medicos');
   }
   elseif($tipo=="enfermera"){
 
-    $album = Enfermera::where('dni',$id);
+    $del_tipo = Enfermera::where('dni',$id);
 
-
-    $album->delete();
-    $album2->delete();
+    $del_tipo->delete();
+    $del_user->delete();
     return redirect('/enfermeros');
-
 
   }
   elseif($tipo=="admision"){
-    $album = Admision::where('dni',$id);
+    $del_tipo = Admision::where('dni',$id);
 
-
-    $album->delete();
-    $album2->delete();
+    $del_tipo->delete();
+    $del_user->delete();
     return redirect('/administradores');
 
 }
 else{
-  $album = Empresa::where('ruc',$id);
+  $del_tipo = Empresa::where('ruc',$id);
 
-
-    $album->delete();
-    $album2->delete();
+    $del_tipo->delete();
+    $del_user->delete();
     return redirect('/empresas');
 
 }
