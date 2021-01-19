@@ -69,7 +69,7 @@ public function showEnfermeros(){
               
                 }
                 elseif($tipo=="enfermera"){
-                  return redirect('/inicio');   
+                  return redirect('/dashboard/triaje');   
               
                  
                 }else{
