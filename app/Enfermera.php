@@ -1,16 +1,13 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Jenssegers\Mongodb\Eloquent\Model;
 
-class Paciente extends Model
+class Enfermera extends Model
 {
   
-    protected $primary_key = '_id';
-
     protected $fillable = [
-        "_id",
         'nombres',
         'apellidos',
         'fecha_nacimiento',
@@ -19,10 +16,13 @@ class Paciente extends Model
         'telefono',
         'direccion',
         'dni',
-        'id_empresa'];
+        'cep',
+        'email',
+        'contraseña',  
 
-
-    protected $collection = 'Paciente';
+    
+    ];
+    protected $collection = 'Enfermera';
 
 
 }

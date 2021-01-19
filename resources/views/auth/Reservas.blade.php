@@ -1,7 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-  <body class="app sidebar-mini">
+
+<body class="app sidebar-mini">
     <!-- Navbar-->
     <header class="app-header"><a class="app-header__logo" href="index.html">Hospital</a>
       <!-- Sidebar toggle button--><a class="app-sidebar__toggle" href="#" data-toggle="sidebar" aria-label="Hide Sidebar"></a>
@@ -67,100 +68,69 @@
     <aside class="app-sidebar">
       <div class="app-sidebar__user">
         <div>
-          <p class="app-sidebar__user-name">John Doe</p>
-          <p class="app-sidebar__user-designation">Frontend Developer</p>
+          <p class="app-sidebar__user-name">{{Auth::user()->email}}</p>
+          <p class="app-sidebar__user-designation">{{Auth::user()->tipo}}</p>
         </div>
       </div>
       <ul class="app-menu">
-        <li><a class="app-menu__item" href="dashboard.html"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Dashboard</span></a></li>
-        <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-laptop"></i><span class="app-menu__label">UI Elements</span><i class="treeview-indicator fa fa-angle-right"></i></a>
-          <ul class="treeview-menu">
-            <li><a class="treeview-item" href="bootstrap-components.html"><i class="icon fa fa-circle-o"></i> Bootstrap Elements</a></li>
-            <li><a class="treeview-item" href="https://fontawesome.com/v4.7.0/icons/" target="_blank" rel="noopener"><i class="icon fa fa-circle-o"></i> Font Icons</a></li>
-            <li><a class="treeview-item" href="ui-cards.html"><i class="icon fa fa-circle-o"></i> Cards</a></li>
-            <li><a class="treeview-item" href="widgets.html"><i class="icon fa fa-circle-o"></i> Widgets</a></li>
-          </ul>
-        </li>
+        <li><a class="app-menu__item" href="Admision.html"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Reserva</span></a></li>
+        <li><a class="app-menu__item" href="Paciente.html"><i class="app-menu__icon fa fa-th-list"></i><span class="app-menu__label">Lista de Reservas</span></a></li>
       </ul>
     </aside>
     <main class="app-content">
       <div class="app-title">
         <div>
-          <h1><i class="fa fa-edit"></i> Formulario para Modificar Paciente</h1>
-          <p>Modificando al Paciente</p>
+          <h1><i class="fa fa-th-list"></i> Tabla de Reserva</h1>
+          <p>Tabla de datos de reserva</p>
         </div>
-        <ul class="app-breadcrumb breadcrumb">
+        <ul class="app-breadcrumb breadcrumb side">
           <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
-          <li class="breadcrumb-item">Paciente</li>
-          <li class="breadcrumb-item"><a href="#">Modificar Paciente</a></li>
+          <li class="breadcrumb-item">Reserva</li>
         </ul>
       </div>
+      <!-- @isset($reserva) -->
       <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-12">
           <div class="tile">
-            <h3 class="tile-title">Paciente Nuevo</h3>
             <div class="tile-body">
-              <form class="form-horizontal" method="POST" action="">
-                @csrf
-                <div class="form-group row">
-                  <label for="nombre" class="control-label col-md-3">Nombre</label>
-                  <div class="col-md-8">
-                    <input name="nombre" class="form-control" type="text" value="" placeholder="Nombre Completo">
-                  </div>
-                </div>
-                <div class="form-group row">
-                  <label for="apellido" class="control-label col-md-3">Apellido</label>
-                  <div class="col-md-8">
-                    <input name="apellido" class="form-control" type="text" value="" placeholder="Apellido Completo">
-                  </div>
-                </div>
-                <div class="form-group row">
-                  <label for="edad" class="control-label col-md-3">Edad</label>
-                  <div class="col-md-8">
-                    <input name="edad" class="form-control col-md-8" type="number" placeholder="Coloca tu edad">
-                  </div>
-                </div>
-                <div class="form-group row">
-                  <label for="dni" class="control-label col-md-3">DNI</label>
-                  <div class="col-md-8">
-                    <input name="dni" class="form-control" type="number" placeholder="Documento de Identidad">
-                  </div>
-                </div>
-                <div class="form-group row">
-                  <label for="f_nacimiento" class="control-label col-md-3">Fecha de nacimiento</label>
-                  <div class="col-md-8">
-                    <input name="f_nacimiento" class="form-control" type="date" placeholder="Fecha de nacimiento" >
-                  </div>
-                </div>
-                  <div class="form-group row">
-                  <label for="genero" class="control-label col-md-3">Genero</label>
-                  <div class="col-md-8">
-                    <input name="genero" class="form-control" type="text" placeholder="Colocar tu genero" >
-                  </div>
-                </div>
-                              
-                <div class="form-group row">
-                  <div class="col-md-8 col-md-offset-3">
-                    <div class="form-check">
-                      <label class="form-check-label">
-                        <input class="form-check-input" type="checkbox">Acepto los terminos y condiciones
-                      </label>
-                    </div>
-                  </div>
-                </div>
-                <div class="tile-footer">
-                  <div class="row">
-                    <div class="col-md-8 col-md-offset-3">
-                      <button class="btn btn-primary" type="sutmit"><i class="fa fa-fw fa-lg fa-check-circle"></i>Modificar</button>
-                    </div>
-                  </div>
-                </div>
-              </form>
+              <div class="table-responsive">
+                <table class="table table-hover table-bordered" id="sampleTable">
+                  <thead>
+                    <tr>
+                      <th>DNI</th>
+                      <th>Estado</th>
+                      <th>Fecha Reserva</th>
+                      <th>ID ESPECIALIDAD</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+
+                    @foreach ($reserva as $a)
+                       <tr>
+                      <td>{{$a->dni_paciente}}</td>
+                      <td>{{$a->estado}}</td>
+                      <td>{{$a->fecha_reserva}}</td>
+                      <td>{{$a->especialidad}}</td>
+                      <td>
+                          <a class="btn btn-primary" type="button" href="{{route('reservas.edit',$a->dni_paciente)}}">Edit</a>
+                          <a class="btn btn-secondary" href="{{route('reservas.destroy',[$a->id])}}" data-bs-toggle="modal" data-bs-target="#deleteModal">Delete</a>
+                      </td>
+                
+                    </tr>   
+                    @endforeach
+                  
+                   
+                  </tbody>
+                </table>
+                {{ $reserva->links()}}
+              </div>
             </div>
-            
           </div>
         </div>
-        </div>
+      </div>
+      <!-- @endisset -->
+      <div class="tile-footer">
+       <a class="btn btn-primary" type="button" href="{{route('reservas.create')}}"><i class="fa fa-fw fa-lg fa-check-circle"></i>Agregar Reserva</a>
       </div>
     </main>
     <!-- Essential javascripts for application to work-->
@@ -171,6 +141,10 @@
     <!-- The javascript plugin to display page loading on top-->
     <script src="js/plugins/pace.min.js"></script>
     <!-- Page specific javascripts-->
+    <!-- Data table plugin-->
+    <script type="text/javascript" src="js/plugins/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="js/plugins/dataTables.bootstrap.min.js"></script>
+    <script type="text/javascript">$('#sampleTable').DataTable();</script>
     <!-- Google analytics script-->
     <script type="text/javascript">
       if(document.location.hostname == 'pratikborsadiya.in') {
@@ -182,5 +156,6 @@
       	ga('send', 'pageview');
       }
     </script>
-  </body>
+
+</body>
 @endsection

@@ -2,14 +2,15 @@
 
 namespace App;
 
+
 use Jenssegers\Mongodb\Eloquent\Model;
+//use Illuminate\Database\Eloquent\Model;
 
-class Reserva extends Model
+class Cita extends Model
 {
+    protected $primary_key = '_id';
 
-    // protected $primaryKey='id';
-
-    protected $fillable=['
+    protected $fillable = ['
         _id',
         'fecha_reserva',
         'estado',
@@ -21,6 +22,8 @@ class Reserva extends Model
         'diagnostico._id',
         'diagnostico.descripcion'];
 
-    protected $collection='Cita';
+    protected $collection = 'Cita';
+
+    
 
 }
