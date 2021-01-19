@@ -10,6 +10,7 @@ use App\Models\Medico;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 class UsuarioController extends Controller
 {
@@ -65,11 +66,11 @@ public function showEnfermeros(){
               $tipo=Auth::user()->tipo;
               
               if ($tipo=="admision") {
-                    return redirect('/inicio');   
+                    return view('auth.Inicio');   
               
                 }
                 elseif($tipo=="enfermera"){
-                  return redirect('/dashboard/triaje');   
+                  return redirect('dashboard/triaje');   
               
                  
                 }else{
