@@ -1,9 +1,3 @@
-<<<<<<< HEAD
-.atender{
-    /* display: none; */
-    visibility: hidden;
-}
-=======
 @charset "UTF-8";
 /*!
  * Vali Admin
@@ -16734,4 +16728,3 @@ be a descendant of the grid when it is being dragged.
 .user .user-settings label {
   color: #666;
 }
->>>>>>> 441bb95a544a13021615b76debfeeb2f93dc0204
