@@ -68,9 +68,7 @@ Route::post('em/citas/{idEsp}/filtrarDni', 'EM\CitaEMController@filtrarDni');
 Route::get('em/diagnostico/{dni}/{fecha}/{nombre}/{apellido}', 'EM\DiagnosticoEMController@mostrarCita');
 
 Route::get('em/citas/{id}/registrar', 'EM\CitaEMController@registrar');
-<<<<<<< HEAD
-=======
-=======
+
 /*Rutas Triaje*/
 
 Route::resource('dashboard/triaje','Dashboard\TriajeController');
@@ -95,5 +93,3 @@ Route::get('/empresas/eliminar','UsuarioController@eliminarUsuario');
 
 Route::get('/turnos','UsuarioController@verTurnos');
 
->>>>>>> 441bb95a544a13021615b76debfeeb2f93dc0204
->>>>>>> 493386760b1a060bfedc97aca6fbc3b33343d1dd

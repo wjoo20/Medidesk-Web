@@ -126,7 +126,7 @@ class CitaEMController extends Controller
      * @param  \App\CitaEM  $citaEM
      * @return \Illuminate\Http\Response
      */
-    public function show(CitaEM $citaEM)
+    public function show(Cita $citaEM)
     {
         //
     }
@@ -137,7 +137,7 @@ class CitaEMController extends Controller
      * @param  \App\CitaEM  $citaEM
      * @return \Illuminate\Http\Response
      */
-    public function edit(CitaEM $citaEM)
+    public function edit(Cita $citaEM)
     {
         //
     }
@@ -149,7 +149,7 @@ class CitaEMController extends Controller
      * @param  \App\CitaEM  $citaEM
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, CitaEM $citaEM)
+    public function update(Request $request, Cita $citaEM)
     {
         //
     }
@@ -160,7 +160,7 @@ class CitaEMController extends Controller
      * @param  \App\CitaEM  $citaEM
      * @return \Illuminate\Http\Response
      */
-    public function destroy(CitaEM $citaEM)
+    public function destroy(Cita $citaEM)
     {
         //
     }
