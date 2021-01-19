@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Reserva;
 use Illuminate\Http\Request;
+use App\Paciente;
+// use App\Model\Reserva;
 
 class ReservaController extends Controller
 {
@@ -42,20 +44,37 @@ class ReservaController extends Controller
         // return back()->with('status', 'Reserva creada correctamente');
 
         $this -> validate($request,[
-            'title' => 'required',
-            'title2' => 'required',
-            'title3' => 'required'
+            'nombres' => 'required',
+            'apellidos' => 'required',
+            '_id' => 'required',
+            'telefono'=>'required',
+            'id_empresa'=>'required',
+            'fecha_nacimiento'=>'required',
+            'estado' =>'required',
+            'fecha_reserva'=>'required',
+            'especialidad'=>'required'
 
         ]);
 
-        $reserva = new Reserva();
-        $reserva -> title=$request->title;
-        $reserva -> title2=$request->title2;
-        $reserva -> title3=$request->title3;
+        $reserva = new Paciente();
+        $reserva -> nombres=$request->nombres;
+        $reserva -> apellidos=$request->apellidos;
+        $reserva -> _id=$request->_id;
+        $reserva -> telefono=$request->telefono;
+        $reserva -> id_empresa=$request->id_empresa;
+        $reserva -> fecha_nacimiento=$request->fecha_nacimiento;
 
         $reserva->save();
 
-        return redirect('/reservas')->with('message', 'Reserva creada correctamente');
+        $now = new Reserva();
+        $now -> dni_paciente=$request->_id;
+        $now -> fecha_reserva=$request->created_at;
+        $now -> estado=$request->estado;
+        $now -> fecha_reserva=$request->fecha_reserva;
+        $now -> especialidad=$request->especialidad;
+        $now -> save();
+
+        return redirect('/reservas');
     }
 
     /**
@@ -75,9 +94,10 @@ class ReservaController extends Controller
      * @param  \App\Reserva  $reserva
      * @return \Illuminate\Http\Response
      */
-    public function edit(Reserva $reserva)
+    public function edit(Reserva $dni_paciente)
     {
-        return view('auth.EditarReservas',['reserva'=> $reserva]);
+        return view('auth.EditarReservas',['reserva'=> $dni_paciente]);
+
     }
 
     /**
@@ -87,10 +107,11 @@ class ReservaController extends Controller
      * @param  \App\Reserva  $reserva
      * @return \Illuminate\Http\Response
      */
-    public function update(SaveReserva $request, Reserva $reserva)
+    public function update(Reserva $dni_paciente)
     {
+        // dd("hola");
         $reserva->update($request -> all());
-        return back()->with('status', 'Reserva actualizado correctamente');
+        return redirect('/reservas');
     }
 
     /**
@@ -99,8 +120,10 @@ class ReservaController extends Controller
      * @param  \App\Reserva  $reserva
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Reserva $reserva)
+    public function destroy(Reserva $reserva, $id)
     {
-        //
+        $reserva= Reserva::find($id);
+        $reserva->delete();
+        return redirect('/reservas')->with('message','Segurito segurito???');
     }
 }

@@ -68,127 +68,106 @@
     <aside class="app-sidebar">
       <div class="app-sidebar__user">
         <div>
-          <p class="app-sidebar__user-name">John Doe</p>
-          <p class="app-sidebar__user-designation">Frontend Developer</p>
+          <p class="app-sidebar__user-name">{{Auth::user()->email}}</p>
+          <p class="app-sidebar__user-designation">{{Auth::user()->tipo}}</p>
         </div>
       </div>
       <ul class="app-menu">
-        <li><a class="app-menu__item" href="dashboard.html"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Dashboard</span></a></li>
-        <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-laptop"></i><span class="app-menu__label">UI Elements</span><i class="treeview-indicator fa fa-angle-right"></i></a>
-          <ul class="treeview-menu">
-            <li><a class="treeview-item" href="bootstrap-components.html"><i class="icon fa fa-circle-o"></i> Bootstrap Elements</a></li>
-            <li><a class="treeview-item" href="https://fontawesome.com/v4.7.0/icons/" target="_blank" rel="noopener"><i class="icon fa fa-circle-o"></i> Font Icons</a></li>
-            <li><a class="treeview-item" href="ui-cards.html"><i class="icon fa fa-circle-o"></i> Cards</a></li>
-            <li><a class="treeview-item" href="widgets.html"><i class="icon fa fa-circle-o"></i> Widgets</a></li>
-          </ul>
-        </li>
-        <li><a class="app-menu__item" href="charts.html"><i class="app-menu__icon fa fa-pie-chart"></i><span class="app-menu__label">Charts</span></a></li>
-        <li class="treeview is-expanded"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-edit"></i><span class="app-menu__label">Forms</span><i class="treeview-indicator fa fa-angle-right"></i></a>
-          <ul class="treeview-menu">
-            <li><a class="treeview-item" href="form-components.html"><i class="icon fa fa-circle-o"></i> Form Components</a></li>
-            <li><a class="treeview-item" href="form-custom.html"><i class="icon fa fa-circle-o"></i> Custom Components</a></li>
-            <li><a class="treeview-item active" href="form-samples.html"><i class="icon fa fa-circle-o"></i> Form Samples</a></li>
-            <li><a class="treeview-item" href="form-notifications.html"><i class="icon fa fa-circle-o"></i> Form Notifications</a></li>
-          </ul>
-        </li>
-        <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-th-list"></i><span class="app-menu__label">Tables</span><i class="treeview-indicator fa fa-angle-right"></i></a>
-          <ul class="treeview-menu">
-            <li><a class="treeview-item" href="table-basic.html"><i class="icon fa fa-circle-o"></i> Basic Tables</a></li>
-            <li><a class="treeview-item" href="table-data-table.html"><i class="icon fa fa-circle-o"></i> Data Tables</a></li>
-          </ul>
-        </li>
-        <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-file-text"></i><span class="app-menu__label">Pages</span><i class="treeview-indicator fa fa-angle-right"></i></a>
-          <ul class="treeview-menu">
-            <li><a class="treeview-item" href="blank-page.html"><i class="icon fa fa-circle-o"></i> Blank Page</a></li>
-            <li><a class="treeview-item" href="page-login.html"><i class="icon fa fa-circle-o"></i> Login Page</a></li>
-            <li><a class="treeview-item" href="page-lockscreen.html"><i class="icon fa fa-circle-o"></i> Lockscreen Page</a></li>
-            <li><a class="treeview-item" href="page-user.html"><i class="icon fa fa-circle-o"></i> User Page</a></li>
-            <li><a class="treeview-item" href="page-invoice.html"><i class="icon fa fa-circle-o"></i> Invoice Page</a></li>
-            <li><a class="treeview-item" href="page-calendar.html"><i class="icon fa fa-circle-o"></i> Calendar Page</a></li>
-            <li><a class="treeview-item" href="page-mailbox.html"><i class="icon fa fa-circle-o"></i> Mailbox</a></li>
-            <li><a class="treeview-item" href="page-error.html"><i class="icon fa fa-circle-o"></i> Error Page</a></li>
-          </ul>
-        </li>
-        <li><a class="app-menu__item" href="docs.html"><i class="app-menu__icon fa fa-file-code-o"></i><span class="app-menu__label">Docs</span></a></li>
+        <li><a class="app-menu__item" href="/reservas"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Reserva</span></a></li>
+        <li><a class="app-menu__item" href="Paciente.html"><i class="app-menu__icon fa fa-th-list"></i><span class="app-menu__label">Lista de Reservas</span></a></li>
       </ul>
     </aside>
     <main class="app-content">
       <div class="app-title">
         <div>
-          <h1><i class="fa fa-edit"></i> Formulario para Modificar Reservas</h1>
-          <p>Modificando la Cita</p>
+          <h1><i class="fa fa-edit"></i> Formulario para Agregar Reservas</h1>
+          <p>Añadiendo Reserva</p>
         </div>
         <ul class="app-breadcrumb breadcrumb">
           <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
           <li class="breadcrumb-item">Reserva</li>
-          <li class="breadcrumb-item"><a href="#">Modificar Reserva</a></li>
+          <li class="breadcrumb-item"><a href="#">Agregar Reserva</a></li>
         </ul>
       </div>
 
-      <div class="row">
-        <div class="col-md-6">
+      <div class="row justify-content-center">
+        <div class="col-md-6 col-6 my-auto mx-auto">
           <div class="tile">
-            <h3 class="tile-title">Modificar Reserva</h3>
+            <h3 class="tile-title">Agregar Reserva</h3>
             <div class="tile-body">
               <form action="{{ route('reservas.store')}}" method="post">
               @csrf  
               
               <div class="form-group row">
-                  <label for="title"  class="control-label col-md-3">DNI</label>
+                  <label for="nombres"  class="control-label col-md-3">Nombre:</label>
                   <div class="col-md-8">
-                    <input name="title" id="title" type="text" class="form-control"  value="{{ old('dni_paciente',$reserva -> dni_paciente)}}"  placeholder="Nombre Completo" >
+                    <input name="nombres" id="nombres" type="text" class="form-control"  value="{{ old('nombres',$reserva -> nombres)}}"  placeholder="Nombre Completo" >
                   </div>
                 </div>
                 <div class="form-group row">
-                  <label for="title2" class="control-label col-md-3">Fecha</label>
+                  <label for="apellidos" class="control-label col-md-3">Apellido:</label>
                   <div  class="col-md-8">
-                    <input name="title2" id="title2" class="form-control" type="text" value="{{ old('fecha_reserva',$reserva -> fecha_reserva)}}" placeholder="Apellido Completo">
+                    <input name="apellidos" id="apellidos" class="form-control" type="text" value="{{ old('apellidos',$reserva -> apellidos)}}" placeholder="Apellido Completo">
                   </div>
                 </div> 
                 <div class="form-group row">
-                  <label for="title3" class="control-label col-md-3">Estado</label>
+                  <label for="id" class="control-label col-md-3">DNI:</label>
                   <div class="col-md-8">
-                    <input name="title3" id="title3" class="form-control" type="text" value="{{ old('estado',$reserva -> estado)}}" placeholder="Documento de Identidad">
+                    <input name="_id" id="id" class="form-control" type="text" value="{{ old('id',$reserva -> id)}}" placeholder="Documento de Identidad">
                   </div>
                 </div>
-                <!-- <div class="form-group row">
-                  <label for="title4" class="control-label col-md-3">Fecha</label>
-                  <div class="col-md-8">
-                    <input name="titl4" id="title4" class="form-control" type="date" value="{{ old('fecha',$reserva -> fecha)}}">
-                  </div>
-                </div> -->
-                <!-- <div class="form-group row">
-                  <label class="control-label col-md-3">Especialidad</label>
-                  <div class="col-md-8">
-                    <select class="form-control" id="exampleSelect1">
-                      <option>Elige una especialidad</option>
-                      <option>1</option>
-                      <option>2</option>
-                      <option>3</option>
-                      <option>4</option>
-                      <option>5</option>
-                    </select>
-                  </div>
-                </div>               
                 <div class="form-group row">
-                  <div class="col-md-8 col-md-offset-3">
-                    <div class="form-check">
-                      <label class="form-check-label">
-                        <input class="form-check-input" type="checkbox">Acepto los terminos y condiciones
-                      </label>
-                    </div>
+                  <label for="telefono" class="control-label col-md-3">Telefono:</label>
+                  <div class="col-md-8">
+                    <input name="telefono" id="telefono" class="form-control" type="text" value="{{ old('telefono',$reserva -> telefono)}}" placeholder="Documento de Identidad">
                   </div>
-                </div> -->
+                </div>
+                <div class="form-group row">
+                  <label for="id_empresa" class="control-label col-md-3">Empresa:</label>
+                  <div class="col-md-8">
+                    <input name="id_empresa" id="id_empresa" class="form-control" type="text" value="{{ old('id_empresa',$reserva -> id_empresa)}}" placeholder="Documento de Identidad">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="fecha_nacimiento" class="control-label col-md-3">Fecha Nacimiento</label>
+                  <div class="col-md-8">
+                    <input name="fecha_nacimiento" id="fecha_nacimiento" class="form-control" type="date" value="{{ old('fecha_nacimiento',$reserva -> fecha_nacimiento)}}">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="estado" class="control-label col-md-3">Estado:</label>
+                  <div class="col-md-8">
+                    <input name="estado" id="estado" class="form-control" type="text" value="{{ old('estado',$reserva -> estado)}}">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="fecha_reserva" class="control-label col-md-3">Fecha Reserva:</label>
+                  <div class="col-md-8">
+                    <input name="fecha_reserva" id="fecha_reserva" class="form-control" type="date" value="{{ old('fecha_reserva',$reserva -> fecha_reserva)}}">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="especialidad" class="control-label col-md-3">Especialidad::</label>
+                  <div class="col-md-8">
+                    <input name="especialidad" id="especialidad" class="form-control" type="text" value="{{ old('especialidad',$reserva -> especialidad)}}">
+                  </div>
+                </div>    
                 <div class="tile-footer">
                     <div class="row">
                         <div class="col-md-8 col-md-offset-3">
-                            <button class="btn btn-primary" type="submit" value="Enviar"><i class="fa fa-fw fa-lg fa-check-circle"></i>Enviar</button>
+                            <button class="btn btn-primary" type="submit" value="Enviar"><i class="fa fa-fw fa-lg fa-check-circle"></i>Agregar</button>
                         </div>
                     </div>
                 </div>
               </form>
             </div>
             
+            </div>
+          </div>
+        </div>
+      </div>
+    
+   
             </div>
           </div>
         </div>
