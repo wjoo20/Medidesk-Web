@@ -39,13 +39,13 @@
         </div>
       </div>
       <ul class="app-menu">
-<<<<<<< HEAD
-        <li><a class="app-menu__item active" href="/reservas"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Reserva</span></a></li>
-=======
-        <li><a class="app-menu__item active" href="/inicio"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Dashboard</span></a></li>
->>>>>>> refs/remotes/origin/main
-    
-    
+
+      
+        <li><a class="app-menu__item active" href="/inicio"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Inicio</span></a></li>
+
+      <li><a class="app-menu__item" href="/reservas"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Reserva</span></a></li>
+      <li><a class="app-menu__item" href="/admision"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Admisión</span></a></li>
+
     
         <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-user"></i><span class="app-menu__label">Usuarios</span><i class="treeview-indicator fa fa-angle-right"></i></a>
           <ul class="treeview-menu">

@@ -1,12 +1,11 @@
 <?php
-
+use App\Reserva;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\CitaEMController;
 
 use app\Http\Controllers;
-
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +19,7 @@ use app\Http\Controllers;
 */
 
 Route::get('/', function () {
+    
     return view('welcome');
 });
 
@@ -53,6 +53,7 @@ Route::get('/administradores/eliminar','UsuarioController@eliminarUsuario');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+
 Route::get('em/citas/{id}', 'EM\CitaEMController@index');
 
 //Route::get('em/atenciones/{id}', 'EM\AtencionesEMController@index');
@@ -69,6 +70,10 @@ Route::get('em/diagnostico/{dni}/{fecha}/{nombre}/{apellido}', 'EM\DiagnosticoEM
 
 Route::get('em/citas/{id}/registrar', 'EM\CitaEMController@registrar');
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 7b4f2da8e9938d21e05e2c316b0841f47a4a69fc
 /*Rutas Triaje*/
 
 Route::resource('dashboard/triaje','Dashboard\TriajeController');
@@ -89,7 +94,19 @@ Route::post('/empresas/actualizar','UsuarioController@postactualizarUsuario');
 Route::get('/empresas/actualizar','UsuarioController@actualizarUsuario');
 Route::post('/empresas/actualizar','UsuarioController@postactualizarUsuario');
 
+
+Route::get('/admision','AdmisionController@index');
+//Route::get('/paciente','PacienteController@index');
+Route::get('/paciente','PacienteController@index');
+Route::get('/paciente/crear','PacienteController@create');
+Route::post('/paciente/guadar','PacienteController@store')->name('guardar');
+
+Route::get('/paciente/actualizar','PacienteController@edit')->name('editar');
+
 Route::get('/empresas/eliminar','UsuarioController@eliminarUsuario');
 
-Route::get('/turnos','UsuarioController@verTurnos');
 
+<<<<<<< HEAD
+=======
+Route::get('/turnos','UsuarioController@verTurnos');
+>>>>>>> 7b4f2da8e9938d21e05e2c316b0841f47a4a69fc

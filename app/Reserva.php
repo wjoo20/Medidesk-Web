@@ -2,11 +2,11 @@
 
 namespace App;
 
-// use Illuminate\Database\Eloquent\Model;
 use Jenssegers\Mongodb\Eloquent\Model;
 
 class Reserva extends Model
 {
+
     // protected $primaryKey='id';
 
     protected $fillable=['
@@ -22,4 +22,5 @@ class Reserva extends Model
         'diagnostico.descripcion'];
 
     protected $collection='Cita';
+
 }
