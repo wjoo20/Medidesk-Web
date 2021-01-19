@@ -73,4 +73,3 @@ Route::get('/empresas/eliminar','UsuarioController@eliminarUsuario');
 
 Route::get('/turnos','UsuarioController@verTurnos');
 
->>>>>>> refs/remotes/origin/main
