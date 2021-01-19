@@ -29,16 +29,23 @@ Route::get('/enfermeros','UsuarioController@showEnfermeros');
 Route::get('/administradores','UsuarioController@showAdministradores');
 Route::get('/empresas','UsuarioController@showEmpresas');
 
-Route::get('/administrador/inicio','UsuarioController@showAdmInicio');
+Route::get('/inicio','UsuarioController@showInicio');
 
 Route::get('/medicos/actualizar','UsuarioController@actualizarUsuario');
 Route::post('/medicos/actualizar','UsuarioController@postactualizarUsuario');
+Route::get('/medicos/eliminar','UsuarioController@eliminarUsuario');
 
 Route::get('/enfermeros/actualizar','UsuarioController@actualizarUsuario');
 Route::post('/enfermeros/actualizar','UsuarioController@postactualizarUsuario');
+Route::get('/enfermeros/eliminar','UsuarioController@eliminarUsuario');
 
 Route::get('/administradores/actualizar','UsuarioController@actualizarUsuario');
 Route::post('/administradores/actualizar','UsuarioController@postactualizarUsuario');
+Route::get('/administradores/eliminar','UsuarioController@eliminarUsuario');
+
+
+
+Route::get('/home', 'HomeController@index')->name('home');
 
 /*Rutas Triaje*/
 
@@ -54,3 +61,12 @@ Route::get('/triaje/getIdCita/{id_cita}','Dashboard\TriajeController@getIdCita')
 
 Route::get('/empresas/actualizar','UsuarioController@actualizarUsuario');
 Route::post('/empresas/actualizar','UsuarioController@postactualizarUsuario');
+
+
+Route::get('/empresas/actualizar','UsuarioController@actualizarUsuario');
+Route::post('/empresas/actualizar','UsuarioController@postactualizarUsuario');
+
+Route::get('/empresas/eliminar','UsuarioController@eliminarUsuario');
+
+Route::get('/turnos','UsuarioController@verTurnos');
+

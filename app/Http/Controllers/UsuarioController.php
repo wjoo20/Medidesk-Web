@@ -61,10 +61,24 @@ public function showEnfermeros(){
   
             
             }
-            public function showAdmInicio(){
+            public function showInicio(){
+              $tipo=Auth::user()->tipo;
+              
+              if ($tipo=="admision") {
+                    return redirect('/inicio');   
+              
+                }
+                elseif($tipo=="enfermera"){
+                  return redirect('/dashboard/triaje');   
+              
+                 
+                }else{
 
-                return view('auth.Inicio');
+                  return "gg";
+                }
                 
+
+        
                 }
                 public function actualizarUsuario(Request $request){
 
@@ -106,25 +120,25 @@ public function showEnfermeros(){
      public function postactualizarUsuario(Request $request)
     {
       
-        $album_id = $request->get('dni1');
-        $album = User::where('id',$album_id)->get();
-        $album2 = User::where('id',$album_id)->first();
+        $id = $request->get('dni1');
+        $user1 = User::where('id',$id)->get();
+        $album2 = User::where('id',$id)->first();
 
-        $tipo=$album[0]['tipo'];
+        $tipo=$user1[0]['tipo'];
 
         if ($tipo=="medico") {
-           $album1 = Medico::where('dni',$album_id)->first();
+           $usuario = Medico::where('dni',$id)->first();
           
-            $album1->nombres=$request->get('nombres');
-            $album1->apellidos=$request->get('apellidos');
-            $album1->fecha_nacimiento=$request->get('fec_nac');
-            $album1->edad=$request->get('edad');
-            $album1->genero=$request->get('gridRadios');
-            $album1->telefono=$request->get('telefono');
-            $album1->direccion=$request->get('direccion');
-            $album1->especialidad=$request->get('Especialidad');
-            $album1->cmp=$request->get('ColegioMedico');
-            $album1->save();
+            $usuario->nombres=$request->get('nombres');
+            $usuario->apellidos=$request->get('apellidos');
+            $usuario->fecha_nacimiento=$request->get('fec_nac');
+            $usuario->edad=$request->get('edad');
+            $usuario->genero=$request->get('gridRadios');
+            $usuario->telefono=$request->get('telefono');
+            $usuario->direccion=$request->get('direccion');
+            $usuario->especialidad=$request->get('Especialidad');
+            $usuario->cmp=$request->get('ColegioMedico');
+            $usuario->save();
 
 
             if ($request->has('password')){
@@ -137,17 +151,17 @@ public function showEnfermeros(){
             }
        
               elseif($tipo=="admision"){
-                $album1 = Admision::where('dni',$album_id)->first();
+                $usuario = Admision::where('dni',$id)->first();
                 
-                $album1->nombres=$request->get('nombres');
-                $album1->apellidos=$request->get('apellidos');
-                $album1->fecha_nacimiento=$request->get('fec_nac');
-                $album1->edad=$request->get('edad');
-                $album1->genero=$request->get('gridRadios');
-                $album1->telefono=$request->get('telefono');
-                $album1->direccion=$request->get('direccion');
+                $usuario->nombres=$request->get('nombres');
+                $usuario->apellidos=$request->get('apellidos');
+                $usuario->fecha_nacimiento=$request->get('fec_nac');
+                $usuario->edad=$request->get('edad');
+                $usuario->genero=$request->get('gridRadios');
+                $usuario->telefono=$request->get('telefono');
+                $usuario->direccion=$request->get('direccion');
               
-                $album1->save();
+                $usuario->save();
               
                 if ($request->has('password')){
                   $album2->password= bcrypt($request->get('password'));
@@ -158,36 +172,98 @@ public function showEnfermeros(){
       
               } 
         elseif($tipo=="enfermera"){
-          $album1 = Enfermera::where('dni',$album_id)->first();
+          $usuario = Enfermera::where('dni',$id)->first();
           
-          $album1->nombres=$request->get('nombres');
-          $album1->apellidos=$request->get('apellidos');
-          $album1->fecha_nacimiento=$request->get('fec_nac');
-          $album1->edad=$request->get('edad');
-          $album1->genero=$request->get('gridRadios');
-          $album1->telefono=$request->get('telefono');
-          $album1->direccion=$request->get('direccion');
-          $album1->cep=$request->get('ColegioEnfermero');
+          $usuario->nombres=$request->get('nombres');
+          $usuario->apellidos=$request->get('apellidos');
+          $usuario->fecha_nacimiento=$request->get('fec_nac');
+          $usuario->edad=$request->get('edad');
+          $usuario->genero=$request->get('gridRadios');
+          $usuario->telefono=$request->get('telefono');
+          $usuario->direccion=$request->get('direccion');
+          $usuario->cep=$request->get('ColegioEnfermero');
 
-          $album1->save();
+          $usuario->save();
         
           if ($request->has('password')){
             $album2->password= bcrypt($request->get('password'));
             $album2->save();}
        
-       return redirect('/enfermeras');
+       return redirect('/enfermeros');
   } 
   else{
-    $album1 = Empresa::where('ruc',$album_id)->first();
+    $usuario = Empresa::where('ruc',$id)->first();
     
-    $album1->nombre=$request->get('name');
-    $album1->direccion=$request->get('direccion');
+    $usuario->nombre=$request->get('name');
+    $usuario->direccion=$request->get('direccion');
 
-    $album1->save();
+    $usuario->save();
   
     if ($request->has('password')){
       $album2->password= bcrypt($request->get('password'));
       $album2->save();}
  
  return redirect('/empresas');
-}}}
+}}
+
+public function eliminarUsuario(Request $request){
+
+  $id = $request->get('id');
+
+
+  $album1 = User::where('id',$id)->get();
+  $album2 = User::where('id',$id);
+
+
+  $tipo=$album1[0]['tipo'];
+
+  if ($tipo=="medico") {
+
+
+  $album = Medico::where('dni',$id);
+
+
+  $album->delete();
+  $album2->delete();
+  return redirect('/medicos');
+  }
+  elseif($tipo=="enfermera"){
+
+    $album = Enfermera::where('dni',$id);
+
+
+    $album->delete();
+    $album2->delete();
+    return redirect('/enfermeros');
+
+
+  }
+  elseif($tipo=="admision"){
+    $album = Admision::where('dni',$id);
+
+
+    $album->delete();
+    $album2->delete();
+    return redirect('/administradores');
+
+}
+else{
+  $album = Empresa::where('ruc',$id);
+
+
+    $album->delete();
+    $album2->delete();
+    return redirect('/empresas');
+
+}
+
+
+}
+  public function verTurnos(){
+
+    return view('Turnos.turnos');
+
+  }
+
+
+}

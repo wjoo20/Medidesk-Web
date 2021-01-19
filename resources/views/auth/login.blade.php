@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
+<body>
+  
 
 <section class="material-half-bg">
     <div class="cover"></div>
@@ -52,9 +54,19 @@
      </form>
     </div>
   </section>
-
+   <!-- Scripts -->
+   <script src="{{ asset('js/main.js') }}" defer></script>
+   <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+   <script src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
+   <script src="{{ asset('js/popper.min.js') }}"></script>
+   <script src="{{ asset('js/plugins/jquery.dataTables.min.js') }}"></script>
+   <script src="{{ asset('js/plugins/dataTables.bootstrap.min.js') }}"></script>
+   <script type="text/javascript">
+       $('#sampleTable').DataTable();
+   </script>
+  
                   
-
+</body>
                         
 
             
