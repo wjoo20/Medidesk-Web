@@ -1,5 +1,5 @@
 <?php
-
+use App\Reserva;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use app\Http\Controllers;
@@ -16,6 +16,7 @@ use app\Http\Controllers;
 */
 
 Route::get('/', function () {
+    
     return view('welcome');
 });
 
@@ -42,3 +43,11 @@ Route::post('/administradores/actualizar','UsuarioController@postactualizarUsuar
 
 Route::get('/empresas/actualizar','UsuarioController@actualizarUsuario');
 Route::post('/empresas/actualizar','UsuarioController@postactualizarUsuario');
+
+Route::get('/admision','AdmisionController@index');
+//Route::get('/paciente','PacienteController@index');
+Route::get('/paciente','PacienteController@index');
+Route::get('/paciente/crear','PacienteController@create');
+Route::post('/paciente/guadar','PacienteController@store')->name('guardar');
+
+Route::get('/paciente/actualizar','PacienteController@edit')->name('editar');
