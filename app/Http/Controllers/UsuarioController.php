@@ -76,7 +76,11 @@ public function showEnfermeros(){
                 }elseif($tipo=="medico"){
                     return redirect('em/citas/{id}');
                 }
+              else{
+
+                return view('auth.Inicio');   
               
+              }
         
                 }
                 public function actualizarUsuario(Request $request){
