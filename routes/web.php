@@ -44,6 +44,7 @@ Route::post('/administradores/actualizar','UsuarioController@postactualizarUsuar
 Route::get('/administradores/eliminar','UsuarioController@eliminarUsuario');
 
 
+
 Route::get('/home', 'HomeController@index')->name('home');
 
 /*Rutas Triaje*/
@@ -57,6 +58,9 @@ Route::get('/triaje/eliminar','Dashboard\TriajeController@destroy');
 Route::get('/triaje/getIdCita/{id_cita}','Dashboard\TriajeController@getIdCita');
 
 /*End Rutas Triaje*/
+
+Route::get('/empresas/actualizar','UsuarioController@actualizarUsuario');
+Route::post('/empresas/actualizar','UsuarioController@postactualizarUsuario');
 
 
 Route::get('/empresas/actualizar','UsuarioController@actualizarUsuario');

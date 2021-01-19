@@ -23,8 +23,7 @@ class TriajeController extends Controller
         }*/
         $citas = Cita::get(); 
 
-        return view('dashboard.triaje.index',['triaje'=> $triajes],['cita'=> $citas]);
-        
+        return view('dashboard.triaje.index',['triaje'=> $triajes],['cita'=> $citas]);        
     }
 
     public function listarCita()
@@ -80,7 +79,7 @@ class TriajeController extends Controller
     {
         $triaje_id = $request->get('triaje_id');
         $triaje = Triaje::find($triaje_id);
-        /*Actualizar campo estado_triaje en cita*/
+        /*Actualizar campo estado_triaje en cita 'N'*/
         $cita = Cita::find($triaje->id_cita);
         $cita->estado_triaje = 'N';
         $cita->save();
