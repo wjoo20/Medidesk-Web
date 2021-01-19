@@ -40,9 +40,6 @@ Route::post('/enfermeros/actualizar','UsuarioController@postactualizarUsuario');
 Route::get('/administradores/actualizar','UsuarioController@actualizarUsuario');
 Route::post('/administradores/actualizar','UsuarioController@postactualizarUsuario');
 
-<<<<<<< HEAD
-Route::get('/home', 'HomeController@index')->name('home');
-
 /*Rutas Triaje*/
 
 Route::resource('dashboard/triaje','Dashboard\TriajeController');
@@ -55,7 +52,5 @@ Route::get('/triaje/getIdCita/{id_cita}','Dashboard\TriajeController@getIdCita')
 
 /*End Rutas Triaje*/
 
-=======
 Route::get('/empresas/actualizar','UsuarioController@actualizarUsuario');
 Route::post('/empresas/actualizar','UsuarioController@postactualizarUsuario');
->>>>>>> f95e3d500f45fa66108f932da3e695b903d19251
