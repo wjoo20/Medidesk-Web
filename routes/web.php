@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\CitaEMController;
 
+use app\Http\Controllers;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -68,6 +70,8 @@ Route::post('em/citas/{idEsp}/filtrarDni', 'EM\CitaEMController@filtrarDni');
 Route::get('em/diagnostico/{dni}/{fecha}/{nombre}/{apellido}', 'EM\DiagnosticoEMController@mostrarCita');
 
 Route::get('em/citas/{id}/registrar', 'EM\CitaEMController@registrar');
+
+
 
 /*Rutas Triaje*/
 
