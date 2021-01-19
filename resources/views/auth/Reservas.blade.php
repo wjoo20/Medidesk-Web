@@ -1,12 +1,10 @@
-
 @extends('layouts.app')
 
 @section('content')
-    
 
-  <body class="app sidebar-mini">
+<body class="app sidebar-mini">
     <!-- Navbar-->
-    <header class="app-header"><a class="app-header__logo" href="index.html">Medidesk</a>
+    <header class="app-header"><a class="app-header__logo" href="index.html">Hospital</a>
       <!-- Sidebar toggle button--><a class="app-sidebar__toggle" href="#" data-toggle="sidebar" aria-label="Hide Sidebar"></a>
       <!-- Navbar Right Menu-->
       <ul class="app-nav">
@@ -60,20 +58,10 @@
           <ul class="dropdown-menu settings-menu dropdown-menu-right">
             <li><a class="dropdown-item" href="page-user.html"><i class="fa fa-cog fa-lg"></i> Settings</a></li>
             <li><a class="dropdown-item" href="page-user.html"><i class="fa fa-user fa-lg"></i> Profile</a></li>
-            <li><a class="dropdown-item" href="{{ route('logout') }}" 
-                
-                onclick="event.preventDefault();
-                document.getElementById('logout-form').submit();"><i class="fa fa-sign-out fa-lg"></i>
-   {{ __('Logout') }}
-                                   
-        </a> </li>
-  
-        </ul>
+            <li><a class="dropdown-item" href="page-login.html"><i class="fa fa-sign-out fa-lg"></i> Logout</a></li>
+          </ul>
         </li>
       </ul>
-      <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-        @csrf
-    </form>
     </header>
     <!-- Sidebar menu-->
     <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
@@ -85,52 +73,70 @@
         </div>
       </div>
       <ul class="app-menu">
-        <li><a class="app-menu__item active" href="/reservas"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Reserva</span></a></li>
-    
-    
-    
-        <li class="treeview is-expanded"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-user"></i><span class="app-menu__label">Usuarios</span><i class="treeview-indicator fa fa-angle-right"></i></a>
-          <ul class="treeview-menu">
-            <li><a class="treeview-item" href="/registrarUsuario"><i class="icon fa fa-circle-o"></i> Crear Usuario</a></li>
-           
-            <li><a class="treeview-item" href="/medicos"><i class="icon fa fa-circle-o"></i> Médicos</a></li>
-            <li><a class="treeview-item" href="/enfermeros"><i class="icon fa fa-circle-o"></i> Enfermeros</a></li>
-            <li><a class="treeview-item" href="/administradores"><i class="icon fa fa-circle-o"></i> Administradores</a></li>
-            <li><a class="treeview-item" href="/empresas"><i class="icon fa fa-circle-o"></i> Empresas</a></li>
-          </ul>
-        </li>
-      
-    </ul>
+        <li><a class="app-menu__item" href="Admision.html"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Reserva</span></a></li>
+        <li><a class="app-menu__item" href="Paciente.html"><i class="app-menu__icon fa fa-th-list"></i><span class="app-menu__label">Lista de Reservas</span></a></li>
+      </ul>
     </aside>
     <main class="app-content">
       <div class="app-title">
         <div>
-          <h1><i class="fa fa-th-list"></i> Data Table</h1>
-          <p>Table to display analytical data effectively</p>
+          <h1><i class="fa fa-th-list"></i> Tabla de Reserva</h1>
+          <p>Tabla de datos de reserva</p>
         </div>
         <ul class="app-breadcrumb breadcrumb side">
           <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
-          <li class="breadcrumb-item">Tables</li>
-          <li class="breadcrumb-item"><a href="#">Data Table</a></li>
+          <li class="breadcrumb-item">Reserva</li>
         </ul>
       </div>
+      <!-- @isset($reserva) -->
       <div class="row">
         <div class="col-md-12">
           <div class="tile">
-            <div class="tile-body">Bienvenido a la sección del Administrador</div>
+            <div class="tile-body">
+              <div class="table-responsive">
+                <table class="table table-hover table-bordered" id="sampleTable">
+                  <thead>
+                    <tr>
+                      <th>DNI</th>
+                      <th>Estado</th>
+                      <th>Fecha</th>
+                      <th>ID ESPECIALIDAD</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+
+                    @foreach ($reserva as $a)
+                       <tr>
+                      <td>{{$a->dni_paciente}}</td>
+                      <td>{{$a->estado}}</td>
+                      <td>{{$a->fecha_reserva}}</td>
+                      <td>{{$a->id_especialidad}}</td>
+                
+                    </tr>   
+                    @endforeach
+                  
+                   
+                  </tbody>
+                </table>
+                {{ $reserva->links()}}
+              </div>
+            </div>
           </div>
         </div>
       </div>
-
-
-
-
+      <!-- @endisset -->
+      <div class="tile-footer">
+        <a class="btn btn-primary" type="button" href="/reservas"><i class="fa fa-fw fa-lg fa-check-circle"></i>Modificar Reserva</a>&nbsp;&nbsp;&nbsp;<a class="btn btn-primary" type="button" href="{{route('reservas.create')}}"><i class="fa fa-fw fa-lg fa-check-circle"></i>Agregar Reserva</a>&nbsp;&nbsp;&nbsp;<a class="btn btn-secondary" href="#"><i class="fa fa-fw fa-lg fa-times-circle"></i>Eliminar</a>
+      </div>
     </main>
-
-
-
-
-   <!-- Page specific javascripts-->
+    <!-- Essential javascripts for application to work-->
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
+    <!-- The javascript plugin to display page loading on top-->
+    <script src="js/plugins/pace.min.js"></script>
+    <!-- Page specific javascripts-->
     <!-- Data table plugin-->
     <script type="text/javascript" src="js/plugins/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="js/plugins/dataTables.bootstrap.min.js"></script>
@@ -145,13 +151,8 @@
       	ga('create', 'UA-72504830-1', 'auto');
       	ga('send', 'pageview');
       }
-
-
     </script>
   </body>
+</html>
 
 @endsection
-
-
-
-

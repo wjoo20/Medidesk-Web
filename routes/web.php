@@ -28,6 +28,8 @@ Route::get('/medicos','UsuarioController@showMedicos');
 Route::get('/enfermeros','UsuarioController@showEnfermeros');
 Route::get('/administradores','UsuarioController@showAdministradores');
 Route::get('/empresas','UsuarioController@showEmpresas');
+Route::resource('/reservas','ReservaController');
+// Route::resource('/RegistrarReservas','ReservaController@create');
 
 Route::get('/administrador/inicio','UsuarioController@showAdmInicio');
 
