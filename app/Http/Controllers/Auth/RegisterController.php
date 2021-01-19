@@ -3,6 +3,11 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\RequestRegistrarUsuario;
+use App\Models\Admision;
+use App\Models\Empresa;
+use App\Models\Enfermera;
+use App\Models\Medico;
 use App\Providers\RouteServiceProvider;
 use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -38,23 +43,10 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest');
+        $this->middleware('auth');
     }
 
-    /**
-     * Get a validator for an incoming registration request.
-     *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
-     */
-    protected function validator(array $data)
-    {
-        return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-        ]);
-    }
+   
 
     /**
      * Create a new user instance after a valid registration.
@@ -64,10 +56,153 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-        ]);
+        if($data['Tipo']=="medico"){
+            
+            Medico::create([
+                'dni'=>$data['Dni'],
+                'nombres'=>$data['nombres'],
+                'apellidos'=>$data['apellidos'],
+                'fecha_nacimiento'=>$data['fec_nac'],
+                'edad'=>$data['edad'],  
+                'genero'=>$data['gridRadios'],
+                'telefono'=>$data['telefono'],
+                'direccion'=>$data['direccion'],               
+                'especialidad'=>$data['Especialidad'],
+                'cmp'=>$data['ColegioMedico'],
+        
+            ]);
+
+            return User::create([
+                'id'=>$data['Dni'],
+                'tipo'=>$data['Tipo'],
+                'email' => $data['email'],
+                'password' => Hash::make($data['password']),
+              
+                 ]);
+
+        }
+
+        if($data['Tipo']=="empresa"){
+             Empresa::create([
+                        'ruc'=>$data['ruc'],
+                        'nombre'=>$data['name'],
+                        'direccion'=>$data['direccion'],
+                        
+                       
+        
+                        ]);
+            
+            
+            return User::create([
+              
+                'id'=>$data['ruc'],
+                'tipo'=>$data['Tipo'],
+                'email' => $data['email'],
+                'password' => Hash::make($data['password']),
+            ]);   
+
+        }
+
+
+
+        if($data['Tipo']=="admision"){
+           
+            Admision::create([
+                 'dni'=>$data['Dni'],   
+                'nombres'=>$data['nombres'],
+                'apellidos'=>$data['apellidos'],
+                'fecha_nacimiento'=>$data['fec_nac'],
+                'edad'=>$data['edad'],  
+                'genero'=>$data['gridRadios'],
+                'telefono'=>$data['telefono'],
+                'direccion'=>$data['direccion'],
+                
+               
+
+                ]);
+
+            return User::create([
+                        'id'=>$data['Dni'],
+                        'tipo'=>$data['Tipo'],
+                        'email' => $data['email'],
+                        
+                        'password' => Hash::make($data['password']),
+                    ]);
+
+        }
+
+        if($data['Tipo']=="enfermera"){
+           
+            Enfermera::create([
+                'dni'=>$data['Dni'],  
+                'nombres'=>$data['nombres'],
+                'apellidos'=>$data['apellidos'],
+                'fecha_nacimiento'=>$data['fec_nac'],
+                'edad'=>$data['edad'],  
+                'genero'=>$data['gridRadios'],
+                'telefono'=>$data['telefono'],
+                'direccion'=>$data['direccion'],
+                'cep'=>$data['ColegioEnfermero'],
+            
+
+                ]);
+
+            return User::create([
+                        'id'=>$data['Dni'],
+                        'tipo'=>$data['Tipo'],
+                        'email' => $data['email'],
+                        'password' => Hash::make($data['password']),
+                    ]);
+
+        }
+
+
     }
+
+    public function getRegistrar(){
+
+        return view('auth.registrarUsuario');
+
+
+    }
+
+
+        public function postRegistrar(RequestRegistrarUsuario $request)
+        {
+            $data = $request->all();
+            
+            
+            $this->create($data);
+
+            if($data['Tipo']=="enfermera"){
+
+            return redirect('/enfermeros');
+
+
+
+            }
+            if($data['Tipo']=="admision"){
+
+                return redirect('/administradores');
+
+
+    
+    
+                } if($data['Tipo']=="medico"){
+
+                    return redirect('/medicos');
+
+
+        
+                    } if($data['Tipo']=="empresa"){
+
+                        return redirect('/empresas');
+
+
+            
+                        }
+                 
+        }
+
+
 }

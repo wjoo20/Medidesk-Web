@@ -24,6 +24,7 @@
 	//Activate bootstrip tooltips
 	$("[data-toggle='tooltip']").tooltip();
 
+<<<<<<< HEAD
 	$(function(){
 		$('#datetimepicker1').datetimepicker({ format: 'DD-MM-YYYY' });
 	});
@@ -32,4 +33,6 @@
 		$("#btnAtender").removeClass("atender");
 	  });
 		
+=======
+>>>>>>> 441bb95a544a13021615b76debfeeb2f93dc0204
 })();
