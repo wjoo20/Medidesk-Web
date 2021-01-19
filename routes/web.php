@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CitaEMController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,3 +25,19 @@ Route::get('/home', 'HomeController@index')->name('home');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('em/citas/{id}', 'EM\CitaEMController@index');
+
+//Route::get('em/atenciones/{id}', 'EM\AtencionesEMController@index');
+
+Route::resource('em/citas', 'EM\CitaEMController');
+
+Route::resource('em/diagnostico', 'EM\DiagnosticoEMController');
+
+Route::post('em/citas/{idEsp}/filtrarFecha', 'EM\CitaEMController@filtrarFecha');
+
+Route::post('em/citas/{idEsp}/filtrarDni', 'EM\CitaEMController@filtrarDni');
+
+Route::get('em/diagnostico/{dni}/{fecha}/{nombre}/{apellido}', 'EM\DiagnosticoEMController@mostrarCita');
+
+Route::get('em/citas/{id}/registrar', 'EM\CitaEMController@registrar');
