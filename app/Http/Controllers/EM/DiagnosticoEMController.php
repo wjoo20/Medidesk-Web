@@ -64,7 +64,7 @@ class DiagnosticoEMController extends Controller
      * @param  \App\DiagnosticoEM  $DiagnosticoEM
      * @return \Illuminate\Http\Response
      */
-    public function show(DiagnosticoEM $DiagnosticoEM)
+    public function show()
     {
         //
     }
@@ -75,7 +75,7 @@ class DiagnosticoEMController extends Controller
      * @param  \App\DiagnosticoEM  $DiagnosticoEM
      * @return \Illuminate\Http\Response
      */
-    public function edit(DiagnosticoEM $DiagnosticoEM)
+    public function edit()
     {
         //
     }
@@ -87,7 +87,7 @@ class DiagnosticoEMController extends Controller
      * @param  \App\DiagnosticoEM  $DiagnosticoEM
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, DiagnosticoEM $DiagnosticoEM)
+    public function update()
     {
         //
     }
@@ -98,7 +98,7 @@ class DiagnosticoEMController extends Controller
      * @param  \App\DiagnosticoEM  $DiagnosticoEM
      * @return \Illuminate\Http\Response
      */
-    public function destroy(DiagnosticoEM $DiagnosticoEM)
+    public function destroy()
     {
         //
     }
