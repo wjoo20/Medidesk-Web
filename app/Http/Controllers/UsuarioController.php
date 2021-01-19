@@ -10,6 +10,7 @@ use App\Models\Medico;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 class UsuarioController extends Controller
@@ -256,9 +257,39 @@ else{
 }
   public function verTurnos(){
 
-    return view('Turnos.turnos');
+    $idEsp1 = "1";
+    $idEsp2 = "2";
+    $idEsp3 = "3";
+    $idEsp4 = "4";
+    $idEsp5 = "5";
+    $idEsp6 = "6";
+    $idEsp7 = "7";
+    $cit1 = Http::get('http://localhost:5000/turns/'.$idEsp1);
+    $cit2 = Http::get('http://localhost:5000/turns/'.$idEsp2);
+    $cit3 = Http::get('http://localhost:5000/turns/'.$idEsp3);
+    $cit4 = Http::get('http://localhost:5000/turns/'.$idEsp4);
+    $cit5 = Http::get('http://localhost:5000/turns/'.$idEsp5);
+    $cit6 = Http::get('http://localhost:5000/turns/'.$idEsp6);
+    $cit7 = Http::get('http://localhost:5000/turns/'.$idEsp7);
+    
+    
+    $turno1 = $cit1->json();
+    $turno2 = $cit2->json();
+    $turno3 = $cit3->json();
+    $turno4 = $cit4->json();
+    $turno5 = $cit5->json();
+    $turno6 = $cit6->json();
+    $turno7 = $cit7->json();
+    $t1=$turno1[0]['cita']['dni'];
+    $t2=$turno2[0]['cita']['dni'];
+    $t3=$turno3[0]['cita']['dni'];
+    $t4=$turno4[0]['cita']['dni'];
+    $t5=$turno5[0]['cita']['dni'];
+    $t6=$turno6[0]['cita']['dni'];
+    $t7=$turno7[0]['cita']['dni'];
+    return view('Turnos.turnos')->with('t1',$t1)->with('t2',$t2)->with('t3',$t3)->with('t4',$t4)->with('t5',$t5)->with('t6',$t6)->with('t7',$t7);
 
-  }
+  } 
 
 
 }
