@@ -39,7 +39,11 @@
         </div>
       </div>
       <ul class="app-menu">
+<<<<<<< HEAD
+        <li><a class="app-menu__item active" href="/reservas"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Reserva</span></a></li>
+=======
         <li><a class="app-menu__item active" href="/inicio"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Dashboard</span></a></li>
+>>>>>>> refs/remotes/origin/main
     
     
     
